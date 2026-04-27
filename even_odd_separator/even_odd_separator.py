@@ -1,4 +1,4 @@
-class NumberSeparator:
+class EvenOddSeparator:
     def __init__(self, source_file, even_file, odd_file):
         self.source_file = source_file
         self.even_file = even_file
@@ -19,5 +19,6 @@ class NumberSeparator:
                 odds.write('\n'.join(odd_nums))
 
             print(f"Success: Separated {len(even_nums)} even and {len(odd_nums)} odd numbers.")
+
         except FileNotFoundError:
             print(f"Error: The file '{self.source_file}' was not found.")
