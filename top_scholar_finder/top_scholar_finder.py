@@ -8,4 +8,12 @@ class TopScholarFinder:
 
         with open(self.student_records_file, 'r') as file:
             for line in file:
-                pass 
+                data_parts = line.strip().rsplit(' ', 1)
+                
+                if len(data_parts) == 2:
+                    student_name = data_parts[0]
+                    current_grade = float(data_parts[1])
+                    
+                    if current_grade < best_grade:
+                        best_grade = current_grade
+                        top_scholar_name = student_name
