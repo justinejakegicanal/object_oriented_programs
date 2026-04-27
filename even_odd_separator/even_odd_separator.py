@@ -7,4 +7,7 @@ class NumberSeparator:
     def process_and_separate(self):
         with open(self.source_file, 'r') as file:
             numbers = [int(line.strip()) for line in file if line.strip()]
+        
+        even_nums = [str(n) for n in numbers if n % 2 == 0]
+        odd_nums = [str(n) for n in numbers if n % 2 != 0]
 
