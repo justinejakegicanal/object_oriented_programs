@@ -6,14 +6,19 @@ class TopScholarFinder:
         top_scholar_name = "None"
         best_grade = 5.0  
 
-        with open(self.student_records_file, 'r') as file:
-            for line in file:
-                data_parts = line.strip().rsplit(' ', 1)
-                
-                if len(data_parts) == 2:
-                    student_name = data_parts[0]
-                    current_grade = float(data_parts[1])
+        try:
+            with open(self.student_records_file, 'r') as file:
+                for line in file:
+                    data_parts = line.strip().rsplit(' ', 1)
                     
-                    if current_grade < best_grade:
-                        best_grade = current_grade
-                        top_scholar_name = student_name
+                    if len(data_parts) == 2:
+                        student_name = data_parts[0]
+                        current_grade = float(data_parts[1])
+                        
+                        if current_grade < best_grade:
+                            best_grade = current_grade
+                            top_scholar_name = student_name
+                            
+            print(f"Top Scholar: {top_scholar_name} (GWA: {best_grade})")
+        except FileNotFoundError:
+            print(f"Error: '{self.student_records_file}' is missing.")
