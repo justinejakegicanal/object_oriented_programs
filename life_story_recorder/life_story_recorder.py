@@ -3,7 +3,8 @@ class LifeStoryRecorder:
         self.log_file = log_file
 
     def record_entries(self):
-        with open(self.log_file, 'w') as file:
+        # UPGRADE: Changed 'w' to 'a' to prevent overwriting past entries
+        with open(self.log_file, 'a') as file:
             while True:
                 user_input = input("Enter line: ")
                 file.write(user_input + '\n')
@@ -13,4 +14,3 @@ class LifeStoryRecorder:
                     break
                     
         print(f"Life story entries successfully saved to {self.log_file}.")
-        
