@@ -8,4 +8,9 @@ class LifeStoryRecorder:
                 user_input = input("Enter line: ")
                 file.write(user_input + '\n')
                 
-                ask_continue = input("Are there more lines y/n? ")
+                ask_continue = input("Are there more lines y/n? ").strip().lower()
+                if ask_continue != 'y':
+                    break
+                    
+        print(f"Life story entries successfully saved to {self.log_file}.")
+        
