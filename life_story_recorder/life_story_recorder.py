@@ -1,9 +1,10 @@
+import datetime
+
 class LifeStoryRecorder:
     def __init__(self, log_file="mylife.txt"):
         self.log_file = log_file
 
     def record_entries(self):
-        # UPGRADE: Changed 'w' to 'a' to prevent overwriting past entries
         with open(self.log_file, 'a') as file:
             while True:
                 user_input = input("Enter line: ")
