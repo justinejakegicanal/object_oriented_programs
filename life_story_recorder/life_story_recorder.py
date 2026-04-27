@@ -4,4 +4,8 @@ class LifeStoryRecorder:
 
     def record_entries(self):
         with open(self.log_file, 'w') as file:
-            pass 
+            while True:
+                user_input = input("Enter line: ")
+                file.write(user_input + '\n')
+                
+                ask_continue = input("Are there more lines y/n? ")
