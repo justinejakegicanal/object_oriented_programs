@@ -8,7 +8,12 @@ class LifeStoryRecorder:
         with open(self.log_file, 'a') as file:
             while True:
                 user_input = input("Enter line: ")
-                file.write(user_input + '\n')
+                
+                # UPGRADE: Fetch current time and format it (e.g., [2026-04-28 10:00 AM])
+                current_time = datetime.datetime.now().strftime("[%Y-%m-%d %I:%M %p]")
+                formatted_entry = f"{current_time} {user_input}\n"
+                
+                file.write(formatted_entry)
                 
                 ask_continue = input("Are there more lines y/n? ").strip().lower()
                 if ask_continue != 'y':
