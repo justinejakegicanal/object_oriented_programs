@@ -4,21 +4,27 @@ class TopScholarFinder:
 
     def get_highest_scholar(self):
         top_scholar_name = "None"
-        best_grade = 5.0  
+        best_grade = 5.0 
 
         try:
             with open(self.student_records_file, 'r') as file:
                 for line in file:
+                    if not line.strip():
+                        continue
+                    
                     data_parts = line.strip().rsplit(' ', 1)
                     
                     if len(data_parts) == 2:
-                        student_name = data_parts[0]
-                        current_grade = float(data_parts[1])
-                        
-                        if current_grade < best_grade:
-                            best_grade = current_grade
-                            top_scholar_name = student_name
-                            
+                        name = data_parts[0]
+                        grade = float(data_parts[1])
+
+                        if grade < best_grade:
+                            best_grade = grade
+                            top_scholar_name = name
+
             print(f"Top Scholar: {top_scholar_name} (GWA: {best_grade})")
+
         except FileNotFoundError:
-            print(f"Error: '{self.student_records_file}' is missing.")
+            print(f"Error: '{self.student_records_file}' was not found.")
+        except ValueError:
+            print("Error: Could not read a grade. Ensure the file format is 'Name GWA'.")
