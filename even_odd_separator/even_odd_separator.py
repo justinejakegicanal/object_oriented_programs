@@ -1,33 +1,28 @@
 class EvenOddSeparator:
-    def __init__(self, source_file, even_file, odd_file):
-        """Initializes the file names for the source and the outputs."""
-        self.source_file = source_file
-        self.even_file = even_file
-        self.odd_file = odd_file
+    def __init__(self, input_file_path, even_output_path, odd_output_path):
+        self.input_file_path = input_file_path
+        self.even_output_path = even_output_path
+        self.odd_output_path = odd_output_path
 
     def process_and_separate(self):
-        """Reads integers, separates them by parity, and writes to files."""
         try:
-            with open(self.source_file, 'r') as file:
-                # This line reads each line, strips whitespace, and converts to int
-                # only if the line isn't empty.
-                numbers = [int(line.strip()) for line in file if line.strip()]
+            with open(self.input_file_path, 'r') as source_file:
+                all_integers = [int(line.strip()) for line in source_file if line.strip()]
 
-            even_nums = [str(n) for n in numbers if n % 2 == 0]
-            odd_nums = [str(n) for n in numbers if n % 2 != 0]
+            even_numbers_list = [num for num in all_integers if num % 2 == 0]
+            odd_numbers_list = [num for num in all_integers if num % 2 != 0]
 
-            with open(self.even_file, 'w') as evens:
-                evens.write('\n'.join(even_nums))
+            total_sum_of_all = sum(all_integers)
+            average_value = total_sum_of_all / len(all_integers) if all_integers else 0
 
-            with open(self.odd_file, 'w') as odds:
-                odds.write('\n'.join(odd_nums))
+            with open(self.even_output_path, 'w') as even_file:
+                even_file.write('\n'.join(map(str, even_numbers_list)))
+            with open(self.odd_output_path, 'w') as odd_file:
+                odd_file.write('\n'.join(map(str, odd_numbers_list)))
 
-            print(f"Success! Processed {len(numbers)} total integers.")
-            print(f"-> {len(even_nums)} even numbers saved to '{self.even_file}'")
-            print(f"-> {len(odd_nums)} odd numbers saved to '{self.odd_file}'")
+            print(f"\n--- Statistics for {self.input_file_path} ---")
+            print(f"Total: {len(all_integers)} | Sum: {total_sum_of_all} | Avg: {average_value:.2f}")
+            print(f"Success! Data saved to {self.even_output_path} and {self.odd_output_path}.")
 
         except FileNotFoundError:
-            print(f"Error: The file '{self.source_file}' was not found.")
-            print("Tip: Make sure 'numbers.txt' is in the same folder as your scripts.")
-        except ValueError:
-            print(f"Error: '{self.source_file}' contains non-integer data.")
+            print(f"Error: Hindi mahanap ang '{self.input_file_path}'. Siguraduhing tama ang folder location.")
