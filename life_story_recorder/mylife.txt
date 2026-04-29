@@ -1,21 +1,14 @@
 
-[2026-04-28 06:18 AM] I started learning Python today. 
-[2026-04-28 06:18 AM] I successfully fixed my first bug in program 2
-[2026-04-28 06:19 AM] The weather was very humid today.
-[2026-04-28 06:19 AM] I spent three hours working on my programming exercises. 
-[2026-04-29 04:27 PM] "C:\Users\Justine Jake Gicanal\AppData\Local\Programs\Python\Python311\python.exe" "c:/Users/Justine Jake Gicanal/object_oriented_programs/life_story_recorder/main_life_story_recorder.py"
-
---- NEW ENTRY BY: Justine Jake H. Gicanal (19 years old) ---
-[2026-04-29 04:30 PM] I like coding
-[2026-04-29 04:30 PM] Maangas ako
-[2026-04-29 04:30 PM] Malupit ako
-[2026-04-29 04:30 PM] Matapang ako
-
-==============================
-SESSION: Justine Jake H. Gicanal (19 yrs old)
+========================================
+JOURNAL ENTRY: April 29, 2026
+AUTHOR: Justine Jake H. Gicanal (19 years old)
+TOPIC: DREAMS
 MOOD: Happy
-==============================
-[2026-04-29 04:34 PM] This is my first time learning OOP
-[2026-04-29 04:35 PM] I love this activity as it challenges my skill in coding.
-[2026-04-29 04:35 PM] I'm looking forward for the skill I've gained by completing this activity
---- End of Session | Entries: 3 | Words: 30 ---
+========================================
+[04:53 PM] I wanna be a highly skilled programmer someday
+[04:54 PM] I am planning to be a pilot after pursuing Computer Engineering 
+[04:54 PM] I've always been fascinated of how technology works 
+----------------------------------------
+SUMMARY: 3 entries | 27 words
+TIME SPENT: 0.67 minutes
+----------------------------------------
