@@ -1,30 +1,31 @@
 class TopScholarFinder:
-    def __init__(self, student_records_file):
-        self.student_records_file = student_records_file
+    def __init__(self, student_records_file_path):
+        self.student_records_file_path = student_records_file_path
 
     def get_highest_scholar(self):
-        top_scholar_name = "None"
-        best_grade = 5.0 
+        collection_of_top_achievers = []
+        highest_recorded_gwa_score = 5.0
 
         try:
-            with open(self.student_records_file, 'r') as file:
-                for line in file:
-                    if not line.strip():
+            with open(self.student_records_file_path, 'r') as student_data_source:
+                for record_line in student_data_source:
+                    if not record_line.strip():
                         continue
-                    
-                    data_parts = line.strip().rsplit(' ', 1)
-                    
-                    if len(data_parts) == 2:
-                        name = data_parts[0]
-                        grade = float(data_parts[1])
 
-                        if grade < best_grade:
-                            best_grade = grade
-                            top_scholar_name = name
+                    full_student_name, numerical_grade_string = record_line.strip().rsplit(' ', 1)
+                    current_student_gwa = float(numerical_grade_string)
 
-            print(f"Top Scholar: {top_scholar_name} (GWA: {best_grade})")
+                    if current_student_gwa < highest_recorded_gwa_score:
+                        highest_recorded_gwa_score = current_student_gwa
+                        collection_of_top_achievers = [full_student_name]
+                    elif current_student_gwa == highest_recorded_gwa_score:
+                        collection_of_top_achievers.append(full_student_name)
+
+            if collection_of_top_achievers:
+                print(f"\nTop Scholar(s): {', '.join(collection_of_top_achievers)}")
+                print(f"Achieved GWA: {highest_recorded_gwa_score}")
+            else:
+                print("No valid student records were found.")
 
         except FileNotFoundError:
-            print(f"Error: '{self.student_records_file}' was not found.")
-        except ValueError:
-            print("Error: Could not read a grade. Ensure the file format is 'Name GWA'.")
+            print(f"Error: Ang file na '{self.student_records_file_path}' ay hindi mahanap.")
