@@ -1,26 +1,34 @@
 class PowerCalculator:
-    def __init__(self, source_numbers, squares_file, cubes_file):
-        self.source_numbers = source_numbers
-        self.squares_file = squares_file
-        self.cubes_file = cubes_file
+    def __init__(self, source_data_path, square_file_path, cube_file_path):
+        self.source_data_path = source_data_path
+        self.square_file_path = square_file_path
+        self.cube_file_path = cube_file_path
 
-    def apply_powers(self):
+    def apply_powers(self, is_verbose_enabled=False):
         try:
-            with open(self.source_numbers, 'r') as file:
-                all_numbers = [int(line.strip()) for line in file if line.strip()]
+            with open(self.source_data_path, 'r') as source_file:
+                raw_integers = [int(line.strip()) for line in source_file if line.strip()]
 
-            squared_evens = [str(num**2) for num in all_numbers if num % 2 == 0]
-            cubed_odds = [str(num**3) for num in all_numbers if num % 2 != 0]
+            even_squares, odd_cubes = [], []
 
-            with open(self.squares_file, 'w') as f:
-                f.write('\n'.join(squared_evens))
-            
-            with open(self.cubes_file, 'w') as f:
-                f.write('\n'.join(cubed_odds))
+            for current_number in raw_integers:
+                if current_number % 2 == 0:
+                    calculated_result = current_number ** 2
+                    even_squares.append(str(calculated_result))
+                    if is_verbose_enabled:
+                        print(f"[DEBUG] Even {current_number}² = {calculated_result}")
+                else:
+                    calculated_result = current_number ** 3
+                    odd_cubes.append(str(calculated_result))
+                    if is_verbose_enabled:
+                        print(f"[DEBUG] Odd {current_number}³ = {calculated_result}")
 
-            print(f"Success! Evens saved to {self.squares_file}, Odds saved to {self.cubes_file}.")
+            with open(self.square_file_path, 'w') as output_f:
+                output_f.write('\n'.join(even_squares))
+            with open(self.cube_file_path, 'w') as output_f:
+                output_f.write('\n'.join(odd_cubes))
 
-        except FileNotFoundError:
-            print(f"Error: The input file '{self.source_numbers}' does not exist.")
-        except ValueError:
-            print("Error: The input file must contain only integers.")
+            print("\nCalculation complete. Files updated successfully.")
+
+        except Exception as error_msg:
+            print(f"Critical System Error: {error_msg}")
